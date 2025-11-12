@@ -9,12 +9,32 @@
 </head>
 
 <body> 
+    <!-- CLUE: The password starts with "Cyber" -->
     <main>
         <section>
             <h2>Challenge 1: Guess the Password</h2>
-            <p>Try to guess the secret password!</p>
+            <p>Try to guess the secret password by finding the hidden clues that are on this page!</p>
+
             <input type="text" id="guessInput" placeholder="Enter your guess">
             <button id="guessButton">Submit Guess</button>
+
+            <p id="result"></p>
+
+            <button onclick="document.getElementById('hiddenClue').style.display='block'">
+                Reveal a Hint
+            </button>
+
+            <p id="hiddenClue" style="display:none;">
+                Hidden Clue: It contains the numbers 123.
+            </p>
+            <p><a href ="index.html">Go back to the Challenge Page</a></p>
+
+            <p>
+                System Log: User attempt failed...
+                <span title="Clue: It ends with an exclamation mark!!!!">[?]</span>
+            </p>
         </section>
     </main>
+
+    <script src="script.js"></script>
 </body>

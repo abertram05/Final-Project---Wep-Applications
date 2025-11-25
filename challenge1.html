@@ -3,38 +3,63 @@
 
 <head>
     <meta charset="utf-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta name="viewport" content="width=device-width, initial-scale=1">
     <title>Challenge 1: Guess the Password</title>
     <link rel="stylesheet" href="style.css">
 </head>
 
 <body> 
-    <!-- CLUE: The password starts with "Cyber" -->
     <main>
         <section>
             <h2>Challenge 1: Guess the Password</h2>
-            <p>Try to guess the secret password by finding the hidden clues that are on this page!</p>
+            <p>Try to guess the secret password.</p>
+            <p>You have 5 attempts and 5 minutes!</p>
 
+            <!-- user input and submit button -->
             <input type="text" id="guessInput" placeholder="Enter your guess">
             <button id="guessButton">Submit Guess</button>
+            <button id="resetButton">Reset Timer and Password</button>
 
+            <!-- the feedback text -->
             <p id="result"></p>
 
-            <button onclick="document.getElementById('hiddenClue').style.display='block'">
-                Reveal a Hint
-            </button>
+            <!-- hint button that will unlock after the third try -->
+            <button id="hintButton" style="display:none;">Reveal Hint</button>
+            <p id="hintText" style="display:none;">Hint: The password starts ends with "!"</p>
 
-            <p id="hiddenClue" style="display:none;">
-                Hidden Clue: It contains the numbers 123.
-            </p>
+            <!-- hidden clue revealed with hover for the numbers-->
+            <p id="hiddenClueHover" style="display:none;">Hover over this text to reveal a clue for the numbers!</p>
+            <p id="hoverClueText" style="display:none;">Numbers Clue: <span id="numberClue"></span></p>
+
+            <!-- casear cipher clue -->
+            <p>Caesar Cipher Clue: <span id="cipherText"></span></p>
+
+            <!-- decoder tool -->
+            <h3>Decoder Tool</h3>
+            <input id="decoderInput" placeholder ="Enter text">
+            <select id="decoderShift">
+                <option value="0">Shift 0</option>
+                <option value="1">Shift 1</option>
+                <option value="2">Shift 2</option>
+                <option value="3">Shift 3</option>
+                <option value="4">Shift 4</option>
+                <option value="5">Shift 5</option>
+            </select>
+            <button id="decodeButton">Decode</button>
+            <p>Decoded Output: <span id="decoderOutput"></span></p>
+
+            <!-- timer + progress Bar -->
+            <div id="progressBarContainer">
+                <div id="progressBar"></div>
+            </div>
+            <p id="timerDisplay"></p>
+            
+
+            <!-- back to the index page-->
             <p><a href ="index.html">Go back to the Challenge Page</a></p>
-
-            <p>
-                System Log: User attempt failed...
-                <span title="Clue: It ends with an exclamation mark!!!!">[?]</span>
-            </p>
         </section>
     </main>
 
     <script src="script.js"></script>
 </body>
+</html>

@@ -1,3 +1,4 @@
+/* general styling for index page */
 .index-main {
     background-color: black; 
     color: greenyellow;
@@ -8,6 +9,7 @@
     text-align: center; 
 }
 
+/* homepage title */
 .index-heading {
     font-size: 70px;
     margin-bottom: 20px;
@@ -21,18 +23,21 @@
     text-align: center;
 }
 
+/* homepage paragraphs*/
 .index-paragraph {
     font-size: 30px;
     margin-bottom: 40px;
     color: black;
 }
 
+/* list describing the challenges */
 .index-list {
     font-size: 20px;
     margin-bottom: 40px;
     color: black;
 }
 
+/* container where all of the challenge buttons sit */
 .challenge-container {
     display: flex;
     gap: 200px;
@@ -41,6 +46,7 @@
     font-size: 20 px; 
 }
 
+/* round challenge buttons */
 .challenge-button {
     color: greenyellow;
     background-color: black;

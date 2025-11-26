@@ -69,7 +69,7 @@ function startEmailRound() {
     emailCounter.textContent = `Email ${roundIndex + 1} of 10`;
 
     // load email text
-    emailBox.textContent = emailRounds[roundIndex].text;
+    emailBox.innerHTML = `<p>${emailRounds[roundIndex].text}</p>`;
 
     // resets the timer
     timeLeft2 = 60;

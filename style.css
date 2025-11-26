@@ -169,4 +169,91 @@ button:hover {
     font-weight: bold;
 }
 
+/* 
+-------------------------------------------------------
+                styling for challenge2.html
+------------------------------------------------------- 
+*/
 
+.challenge2-container {
+    display: flex;
+    flex-direction: column;
+    gap: 18px;
+    padding: 25px;
+    background: black;              /* card background */
+    border: 2px solid cyan;         /* card border */
+    border-radius: 12px;
+    max-width: 700px;
+    margin: 40px auto;
+}
+
+.challenge2-container h2 {
+    text-align: center;
+    font-family: 'Orbitron', sans-serif;
+    color: cyan;
+}
+
+.challenge2-container p {
+    font-size: 1.1rem;
+    text-align: center;
+    color: white;
+}
+
+/* email box */
+.email-box,
+.email-box p {
+    background: black;
+    color: white;
+    padding: 15px;
+    border: 2px solid cyan;
+    border-radius: 8px;
+    min-height: 100px;
+    font-family: monospace;
+    margin: 10px 0;
+}
+
+/* buttons are the same as challenge 1 */
+button {
+    padding: 10px 18px;
+    font-size: 1rem;
+    border:none;
+    border-radius: 8px;
+    cursor: pointer; 
+    background: cyan;
+    color: black;
+    font-weight: bold;
+    transition: 0.25s
+}
+
+button:hover {
+    background: lightblue;
+}
+
+/* Arranges the buttons side by side */
+.button-row {
+    display: flex;
+    justify-content: center;
+    gap: 15px;
+}
+
+/* results */
+#resultMessage {
+    font-size: 1.2rem;
+    font-weight: bold;
+    text-align: center;
+    color: white;
+}
+
+/* email counter and timer */
+#emailCounter,
+#timerDisplay2 {
+    text-align: center;
+    font-weight: bold;
+    color: white;
+}
+
+/* 
+-------------------------------------------------------
+                styling for challenge3.html
+------------------------------------------------------- 
+*/

@@ -11,19 +11,26 @@
 <body> 
     <main>
         <section class="challenge2-container">
+            <!-- title and instructions -->
             <h2>Challenge 2: Phishing Email Analyzer</h2>
             <p>Decide if each email is <strong>Phish</strong> or <strong>Legit</strong>.</p>
             <p>One mistake will restart the game.</p>
             <p>You have <strong>1 minute</strong> per email.</p>
 
+            <!-- displays the email number that is being shown -->
             <h3 id="emailCounter"></h3>
+
+            <!-- email content box -->
             <div id="emailBox"></div>
 
+            <!-- timere for the current email -->
             <p id ="timerDisplay2"></p>
     
+            <!-- the buttons phish and legit -->
             <button id="phishBtn">Phish</button>
             <button id="legitBtn">Legit</button>
 
+            <!-- message for the correct or incorrect result-->
             <p id="resultMessage"></p>
 
             <!-- back to the index page-->

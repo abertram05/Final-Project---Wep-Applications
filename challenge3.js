@@ -24,42 +24,45 @@ const files = [
      
 ]
 
-let index3 = 0;
-let mistakes = 0;
-let timer3 = null;
-let timeLeft3 = 10;
+let index3 = 0;         // tracks current file being scanned
+let mistakes = 0;       // counts player mistakes
+let timer3 = null;      // timer reference
+let timeLeft3 = 10;     // 10 seconds per file
 
 // html elements 
-const fileBox = document.getElementById("fileBox");
-const fileCounter = document.getElementById("fileCounter");
-const timerDisplay3 = document.getElementById("timerDisplay3");
-const mistakeCounter = document.getElementById("mistakeCounter");
-const resultMessage3 = document.getElementById("resultMessage3");
+const fileBox = document.getElementById("fileBox");                     // shows the file name
+const fileCounter = document.getElementById("fileCounter");             // shows what file it is
+const timerDisplay3 = document.getElementById("timerDisplay3");         // countdown display
+const mistakeCounter = document.getElementById("mistakeCounter");       // mistakes display
+const resultMessage3 = document.getElementById("resultMessage3");       // the feedback
 
+// safe and malware buttons 
 const safeBtn = document.getElementById("safeBtn");
 const malwareBtn = document.getElementById("malwareBtn");
 
 // starts the round
 function startFileRound() {
+    // if all of the files are scanned the challenge is completed
     if (index3 >= files.length) { 
         resultMessage3.textContent = "You scanned all 15 files! Congratulations!"
         clearInterval(timer3);
         return;
     }
 
-    // shows the progress
+    // shows the file number and mistakes
     fileCounter.textContent = `File ${index3 + 1} of 15`;
     mistakeCounter.textContent = `Mistake: ${mistakes} / 3`;
+    // displays the file name
     fileBox.innerHTML = `<p>${files[index3].name}</p>`;
 
     // resets the timer
     timeLeft3 = 10; 
     updateTimer3();
-    clearInterval(timer3);
-    timer3 = setInterval(runTimer3, 1000);
+    clearInterval(timer3);                      // stops any previous timer
+    timer3 = setInterval(runTimer3, 1000);      // starts countdown
 }
 
-// timer logic
+// function for the timer 
 function runTimer3() {
     timeLeft3--;
     updateTimer3();
@@ -70,6 +73,7 @@ function runTimer3() {
     }
 }
 
+// updates the timer display
 function updateTimer3() {
     timerDisplay3.textContent = `Time Remaining: ${timeLeft3}s`;
 }
@@ -77,10 +81,11 @@ function updateTimer3() {
 // players choice
 function chooseFile(isMalwareGuess) {
     const correct = files[index3].malware;
-
+    // if its the correct choice moves to the next file
     if (isMalwareGuess === correct) {
         index3++
         startFileRound();
+    // wrong choice 
     } else {
         processMistake("Incorrect choice!");
     }
@@ -88,15 +93,16 @@ function chooseFile(isMalwareGuess) {
 
 // for the mistakes
 function processMistake(message) {
-    mistakes++;
+    mistakes++; 
     mistakeCounter.textContent = `Mistakes: ${mistakes} / 3`;
     resultMessage3.textContent = message;
-
+    // restarts game if there is too many mistakes
     if (mistakes >= 3) {
         restartChallenge3("You reached 3 mistakes. Restarting Challenge...");
         return;
     }
     
+    // moves to next file after mistake
     index3++;
     startFileRound();
 }
@@ -104,14 +110,14 @@ function processMistake(message) {
 // restarts the challenge
 function restartChallenge3(message) {
     resultMessage3.textContent = message; 
-    index3 = 0;
-    mistakes = 0;
+    index3 = 0;         // reset file index
+    mistakes = 0;       // reset mistakes
     clearInterval(timer3);
 
     setTimeout(() => {
         resultMessage3.textContent = "";
         startFileRound();
-    }, 1500);
+    }, 1500);           // starts again after 1.5 seconds
 }
 
 // button events 

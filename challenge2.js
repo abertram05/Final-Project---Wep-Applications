@@ -44,10 +44,9 @@ const emailRounds = [
     },
 ];
 
-// challenge state
-let roundIndex = 0;
-let timer2 = null;
-let timeLeft2 = 60;
+let roundIndex = 0;         // tracks the current email index which starts at 0
+let timer2 = null;          // reference to setInterval
+let timeLeft2 = 60;         // 60 seconds per email
 
 // html elements
 const emailBox = document.getElementById("emailBox");
@@ -68,17 +67,19 @@ function startEmailRound() {
     // shows which email number we are on
     emailCounter.textContent = `Email ${roundIndex + 1} of 10`;
 
-    // load email text
+    // displays the email text
     emailBox.innerHTML = `<p>${emailRounds[roundIndex].text}</p>`;
 
     // resets the timer
     timeLeft2 = 60;
     updateTimer2();
+
+    // stops any existing timer and starts a new countdown
     clearInterval(timer2);
     timer2 = setInterval(runTimer2, 1000);
 }
 
-// function for the timer
+// function for the timer that counts down each second
 function runTimer2() {
     timeLeft2--;
     updateTimer2();
@@ -89,15 +90,15 @@ function runTimer2() {
     }
 }
 
-// update the display
+// updates the timner display
 function updateTimer2() {
     timerDisplay2.textContent = `Time Remaining: ${timeLeft2}s`;
 }
 
 // function for the players answer
+// called when the player clicks phish or legit
 function chooseAnswer(isPhishGuess) {
     const correct = emailRounds[roundIndex].phish;
-
     if (isPhishGuess === correct) {
         // correct goes to the next email
         roundIndex++;
@@ -108,17 +109,18 @@ function chooseAnswer(isPhishGuess) {
     }
 }
 
+// event listeners for the buttons
 phishBtn.addEventListener("click", () => chooseAnswer(true));
 legitBtn.addEventListener("click", () => chooseAnswer(false));
 
 // restarts the challenge
 function restartChallenge2(message) {
     resultMessage.textContent = message;
-    roundIndex = 0;
-    clearInterval(timer2);
+    roundIndex = 0;             // resets email index
+    clearInterval(timer2);      // stops any running timer
     setTimeout(() => {
         resultMessage.textContent = "";
-        startEmailRound();
+        startEmailRound();      // starts after 1.5 seconds
     }, 1500);
 }
 

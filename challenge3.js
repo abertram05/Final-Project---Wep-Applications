@@ -41,22 +41,82 @@ const malwareBtn = document.getElementById("malwareBtn");
 
 // starts the round
 function startFileRound() {
+    if (index3 >= files.length) { 
+        resultMessage3.textContent = "You scanned all 15 files! Congratulations!"
+        clearInterval(timer3);
+        return;
+    }
 
+    // shows the progress
+    fileCounter.textContent = `File ${index3 + 1} of 15`;
+    mistakeCounter.textContent = `Mistake: ${mistakes} / 3`;
+    fileBox.textContent = files[index3].name;
+
+    // resets the timer
+    timeLeft3 = 10; 
+    updateTimer3();
+    clearInterval(timer3);
+    timer3 = setInterval(runTimer3, 1000);
 }
 
 // timer logic
 function runTimer3() {
+    timeLeft3--;
+    updateTimer3();
 
+    if(timeLeft3 <= 0) {
+        clearInterval(timer3)
+        processMistake("Your time ran out! This counts as a mistake...")
+    }
+}
+
+function updateTimer3() {
+    timerDisplay3.textContent = `Time Remaining: ${timeLeft3}s`;
 }
 
 // players choice
-function chooseFile() {
+function chooseFile(isMalwareGuess) {
+    const correct = files[index3].malware;
 
+    if (isMalwareGuess === correct) {
+        index3++
+        startFileRound();
+    } else {
+        processMistake("Incorrect choice!");
+    }
 }
 
 // for the mistakes
+function processMistake(message) {
+    mistakes++;
+    mistakeCounter.textContent = `Mistakes: ${mistakes} / 3`;
+    resultMessage3.textContent = message;
+
+    if (mistakes >= 3) {
+        restartChallenge3("You reached 3 mistakes. Restarting Challenge...");
+        return;
+    }
+    
+    index3++;
+    startFileRound();
+}
 
 // restarts the challenge
+function restartChallenge3(message) {
+    resultMessage3.textContent = message; 
+    index3 = 0;
+    mistakes = 0;
+    clearInterval(timer3);
+
+    setTimeout(() => {
+        resultMessage3.textContent = "";
+        startFileRound();
+    }, 1500);
+}
+
+// button events 
+safeBtn.addEventListener("click", () => chooseFile(false));
+malwareBtn.addEventListener("click", () => chooseFile(true));
 
 // auto starts the challenge
-startFileRound():
+startFileRound();

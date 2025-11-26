@@ -89,9 +89,8 @@ function tileClicked(index) {
     // correct choice
     if (index === correctTile) {
         clickedTile.classList.add("correct");
-        resultMessage4.textContent = "Correct!";
-        currentRound++;
-        setTimeout(startRound4, 600);
+        resultMessage4.textContent = "Correct! You cracked the lock! Restarting...";
+        setTimeout(restartChallenge4, 1000);
         return;
     }
 

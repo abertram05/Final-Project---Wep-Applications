@@ -17,6 +17,7 @@ const roundCounter = document.getElementById("roundCounter");
 const timerDisplay4 = document.getElementById("timerDisplay4");
 const mistakeCounter4 = document.getElementById("mistakeCounter4");
 const resultMessage4 = document.getElementById("resultMessage4");
+const tileOutput = document.getElementById("tileOutput");
 
 // starts the round
 startRound4();
@@ -31,9 +32,10 @@ function startRound4() {
     // resets the grid
     grid.innerHTML = "";
     resultMessage4.textContent = "";
+    tileOutput.textContent = "";
 
     roundCounter.textContent = `Round ${currentRound} / 10`;
-    mistakeCounter4.textContent = `Mistakes: ${mistakes4} / 3`;
+    mistakeCounter4.textContent = `Mistakes: ${mistakes4} / 10`;
 
     // random tile 0-15
     correctTile = Math.floor(Math.random() * 16);
@@ -42,11 +44,7 @@ function startRound4() {
     for (let i = 0; i < 16; i++) {
         const tile = document.createElement("button");
         tile.textContent = i + 1;
-        tile.style.margin = "5px";
-        tile.style.width = "60px";
-        tile.style.height = "60px";
         tile.dataset.index = i;
-
         tile.addEventListener("click", () => tileClicked(i));
         grid.appendChild(tile);
     }
@@ -76,26 +74,54 @@ function updateTimer4() {
 // handles the clicks
 function tileClicked(index) {
     clearInterval(timer4);
+    const tileButtons = grid.querySelectorAll("button");
+    const clickedTile = tileButtons[index];
+
+    // shows clicked tile number
+    tileOutput.textContent = `Tile Clicked: ${index + 1}`;
+
+    // calculates the row and column
+    const rowClicked = Math.floor(index / 4);
+    const colClicked = index & 4;
+    const rowCorrect = Math.floor(correctTile / 4);
+    const colCorrect = correctTile % 4;
 
     // correct choice
     if (index === correctTile) {
+        clickedTile.classList.add("correct");
         resultMessage4.textContent = "Correct!";
         currentRound++;
         setTimeout(startRound4, 600);
         return;
     }
 
-    // wrong choice
-    processMistake4("Wrong tile!");
+    // almost if tile is adjacent
+    const isAlmost = Math.abs(index - correctTile) === 1 || Math.abs(index - correctTile) === 4;
+    if (isAlmost) {
+        clickedTile.classList.add("almost");
+        resultMessage4.textContent = "Close! Keep trying!";
+    } else {
+        clickedTile.classList.add("wrong");
+        resultMessage4.textContent = "Wrong tile!";
+        mistakes4++;
+        mistakeCounter4.textContent = `Mistakes: ${mistakes4} / 10`;
+        if (mistakes4 >= 10) {
+            resultMessage4.textContent = "Too many mistakes! Restarting..."; 
+            setTimeout(restartChallenge4, 1500);
+            return;
+        }
+    }
+    currentRound++;
+    setTimeout(startRound4, 800);
 }
 
 // processes the mistakes 
 function processMistake4(message) {
     mistakes4++; 
-    mistakeCounter4.textContent = `Mistakes: ${mistakes4} / 3`;
+    mistakeCounter4.textContent = `Mistakes: ${mistakes4} / 10`;
     resultMessage4.textContent = message;
 
-    if (mistakes4 >= 3) {
+    if (mistakes4 >= 10) {
         resultMessage4.textContent = "Too many mistakes! Restarting...";
         setTimeout(restartChallenge4, 1500);
         return;

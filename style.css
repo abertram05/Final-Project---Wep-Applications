@@ -335,3 +335,88 @@ button:hover {
     font-weight: bold;
     color: white;
 }
+
+/* 
+-------------------------------------------------------
+                styling for challenge4.html
+------------------------------------------------------- 
+*/
+
+.challenge4-container {
+    display: flex;
+    flex-direction: column;
+    gap: 18px;
+    padding: 25px;
+    background: black;
+    border: 2px solid cyan;
+    border-radius: 12px;
+    max-width: 700px;
+    margin: 40px auto;
+    text-align: center;
+}
+.challenge4-container h2, 
+.challenge4-container h3, 
+.challenge4-container p {
+    color: white;
+}
+
+/* grid-container */
+.grid-container {
+    display: grid;
+    grid-template-columns: repeat(4, 60px);
+    grid-template-rows: repeat(4, 60px);
+    gap: 10px;
+    justify-content: center;
+    margin: 20px 0;
+}
+
+/* tiles */
+.grid-container button {
+    width: 60px; 
+    height: 60px;
+    border: 2px solid cyan;
+    border-radius: 8px;
+    font-weight: bold;
+    font-size: 1rem;
+    cursor: pointer;
+    background: black;
+    color: white;
+    transition: 0.25s;
+}
+
+.grid-container button.correct {
+    background: green !important; 
+    color: black;
+}
+
+.grid-container button.wrong {
+    background: red !important; 
+    color: black;
+}
+
+.grid-container button.almost {
+    background: yellow !important; 
+    color: black;
+}
+
+#tileOutput {
+    margin-top: 15px;
+    font-size: 1.1rem;
+    color: cyan;
+    text-align: center;
+}
+
+/* results */
+#resultMessage4 {
+    font-size: 1.2rem;
+    font-weight: bold;
+    color: white;
+}
+
+/* round counter and timer and mistakes */
+#roundCounter,
+#timerDisplay4,
+#mistakeCounter4 {
+    font-weight: bold;
+    color: white;
+}

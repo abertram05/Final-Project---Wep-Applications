@@ -50,7 +50,7 @@ function startFileRound() {
     // shows the progress
     fileCounter.textContent = `File ${index3 + 1} of 15`;
     mistakeCounter.textContent = `Mistake: ${mistakes} / 3`;
-    fileBox.textContent = files[index3].name;
+    fileBox.innerHTML = `<p>${files[index3].name}</p>`;
 
     // resets the timer
     timeLeft3 = 10; 
